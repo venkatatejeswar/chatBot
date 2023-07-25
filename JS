@@ -1,0 +1,30 @@
+let chatbotMsgList = ["Hi", "Hey", "Good Morning", "Good Evening", "How can I help you?", "Thank You"];
+let sendBtn = document.getElementById("sendMsgBtn");
+let userInput = document.getElementById("userInput");
+let msgContainer = document.getElementById("chatContainer");
+sendBtn.onclick = function() {
+    let msgSentContainer = document.createElement("div");
+    msgContainer.classList.add("msg-to-chatbot-container");
+    msgContainer.appendChild(msgSentContainer);
+    let msgSent = document.createElement("span");
+    msgSent.textContent = userInput.value;
+    msgSent.classList.add("msg-to-chatbot");
+    userInput.value = ""
+    msgSentContainer.appendChild(msgSent);
+
+    replyFromBot();
+
+}
+
+function replyFromBot() {
+    let chatmsgLength = chatbotMsgList.length;
+    let replyIndex = Math.ceil(Math.random() * chatmsgLength - 1);
+    let replyMsg = chatbotMsgList[replyIndex];
+    let replyContainer = document.createElement("div");
+    replyContainer.classList.add("msg-from-chatbot-container")
+    msgContainer.appendChild(replyContainer);
+    let replySent = document.createElement("span");
+    replySent.textContent = replyMsg;
+    replySent.classList.add("msg-from-chatbot");
+    replyContainer.appendChild(replySent);
+}
